@@ -1,14 +1,15 @@
 <div class="row">
   <div class="col-xs-12">
-    <form>
+
+    <form [formGroup]='form' (ngSubmit)='onAddListItem()'>
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" class="form-control" #nameInput />
+          <input type="text" id="name" class="form-control" formControlName='ingredientName' />
         </div>
         <div class="col-sm-2 form-group">
           <label for="amount">Amount</label>
-          <input type="number" id="amount" class="form-control" #amountInput />
+          <input type="number" id="amount" class="form-control" formControlName='amount' />
         </div>
       </div>
       <div class="row">
@@ -16,14 +17,15 @@
           <button
             class="btn btn-success"
             type="submit"
-            (click)="onAddListItem()"
+            [disabled]='!form.valid'
+            
           >
-            Add
+           {{ editMode ? 'Update' : 'Add'}}
           </button>
           <button
             class="btn btn-danger"
-            type="button"
-            (click)="onDeleteListItem()"
+            type="reset"
+            
           >
             Delete
           </button>

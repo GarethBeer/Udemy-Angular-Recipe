@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { DataStorageService } from '../services/data-storage.service';
 
 
 @Component({
@@ -9,8 +10,14 @@ export class HeaderComponent {
   collapsed = true;
 
 
-  constructor() {}
+  constructor(private dsService: DataStorageService) {}
   ngOnint() {}
 
+onSaveData() {
+this.dsService.saveData();
+}
 
+onFetchData() {
+  this.dsService.fetchData().subscribe();
+}
 }
